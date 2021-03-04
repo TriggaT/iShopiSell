@@ -10,6 +10,22 @@ document.addEventListener("DOMContentLoaded", function (){
     })
 })
 
+function createUser(user){
+    let configObj = {
+        method: "POST",
+        headers: {
+        "Content-Type": "application/json",
+        "Accept": "application/json"
+        },
+        body: JSON.stringify({name:user})
+    }
+
+    fetch(userBaseURL, configObj)
+    .then(r => r.json())
+    .then(u => new User(u.id, u.name, u.account_balance))
+
+}
+
 
 
 loginbtn.addEventListener("click", function() {
@@ -18,7 +34,7 @@ loginbtn.addEventListener("click", function() {
     if (userNameArray.includes(username.value.toLowerCase())){
         loginContainer.innerHTML = ""
     }
-    else console.log(username.value)
+    else createUser(username.value)
 
 })
 
