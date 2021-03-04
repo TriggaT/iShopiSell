@@ -3,7 +3,7 @@ body {
     vertical-align: middle;
 }
 
-div.login-container {
+div#login-container {
     margin: 0;
     position: absolute;
     top: 50%;
