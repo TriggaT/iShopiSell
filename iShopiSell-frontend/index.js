@@ -2,11 +2,19 @@ const loginbtn = document.getElementById("login-button")
 const username = document.getElementById("login")
 const loginContainer = document.getElementById("login-container")
 const userBaseURL = "http://localhost:3000/users"
+const productsBaseURL = "http://localhost:3000/products"
 
 document.addEventListener("DOMContentLoaded", function (){
     fetch(userBaseURL)
     .then(r => r.json())
     .then(data => { data.forEach(u => new User(u.id, u.name, u.account_balance))
+    })
+})
+
+document.addEventListener("DOMContentLoaded", function (){
+    fetch(productsBaseURL)
+    .then(r => r.json())
+    .then(data => { console.log(data)
     })
 })
 
@@ -23,7 +31,6 @@ function createUser(user){
     fetch(userBaseURL, configObj)
     .then(r => r.json())
     .then(u => new User(u.id, u.name, u.account_balance))
-
 }
 
 
@@ -35,6 +42,8 @@ loginbtn.addEventListener("click", function() {
         loginContainer.innerHTML = ""
     }
     else createUser(username.value)
+    alert("Thank you for creating a iShopiSell account")
+    loginContainer.innerHTML = ""
 
 })
 
