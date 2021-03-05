@@ -5,6 +5,7 @@ const username = document.getElementById("login")
 const loginContainer = document.getElementById("login-container")
 const productContainer = document.getElementById("products-container")
 let shopping = []
+// let currentUser = {}
 
 
 document.addEventListener("DOMContentLoaded", function (){
@@ -38,13 +39,14 @@ function createUser(user){
 
 
 loginbtn.addEventListener("click", function() {
-    let currentUser = User.all.find(e => e.name.toLowerCase() === username.value.toLowerCase())
+    User.currentUser = User.all.find(e => e.name.toLowerCase().trim() === username.value.toLowerCase())
     
-    if (!!currentUser){
+    if (!!User.currentUser){
         loginContainer.innerHTML = ""
         Product.all.forEach(e => e.displayProduct())
     }
-    else {createUser(username.value)
+    else {createUser(username.value.trim())
+
     alert("Thank you for creating a iShopiSell account")
     loginContainer.innerHTML = ""}
 
@@ -72,7 +74,12 @@ let addProductToShoppingCart = function(p) {
     
 
 let displayCart = function(){
-    console.log(shopping)
+    currentUser = User.currentUser
+    debugger
+
+    currentUser.shoppingCart = shopping
+   
+    console.log(currentUser.shoppingCart)
 
 }
 

@@ -10,6 +10,8 @@ class User {
         User.all.push(this)
     }
 
+    static currentUser = {}
+
 
 
 
