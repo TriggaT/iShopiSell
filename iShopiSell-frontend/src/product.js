@@ -17,12 +17,14 @@ class Product {
         let additionalInfo = document.createElement("h5")
         productTag.innerText = `${this.name} by ${this.seller}`
         productTag.className = "products-display"
-        productTag.addEventListener("click", addProductShoppingCart)
+        productTag.addEventListener("click", () => addProductShoppingCart(this))
         additionalInfo.innerText = `Quantity: ${this.quantity} - $${this.price}`
         productTag.appendChild(additionalInfo)
         productContainer.appendChild(productTag)
     
     }
+
+    
 
 
 

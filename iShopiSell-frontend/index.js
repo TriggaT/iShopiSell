@@ -1,10 +1,10 @@
+const userBaseURL = "http://localhost:3000/users"
+const productsBaseURL = "http://localhost:3000/products"
 const loginbtn = document.getElementById("login-button")
 const username = document.getElementById("login")
 const loginContainer = document.getElementById("login-container")
-let productContainer = document.getElementById("products-container")
-const userBaseURL = "http://localhost:3000/users"
-const productsBaseURL = "http://localhost:3000/products"
-const products = document.getElementsByClassName("products-display")
+const productContainer = document.getElementById("products-container")
+let shopping = []
 
 
 document.addEventListener("DOMContentLoaded", function (){
@@ -37,12 +37,10 @@ function createUser(user){
 }
 
 
-
 loginbtn.addEventListener("click", function() {
     let currentUser = User.all.find(e => e.name.toLowerCase() === username.value.toLowerCase())
     
     if (!!currentUser){
-        let shopping = currentUser.shoppingCart
         loginContainer.innerHTML = ""
         Product.all.forEach(e => e.displayProduct())
     }
@@ -52,21 +50,20 @@ loginbtn.addEventListener("click", function() {
 
 })
 
-// let displayProduct = function(p){
 
-//     let productTag = document.createElement("h4")
-//     let additionalInfo = document.createElement("h5")
-//     productTag.innerText = `${p.name} by ${p.seller}`
-//     productTag.className = "products-display"
-//     productTag.addEventListener("click", addProductShoppingCart)
-//     additionalInfo.innerText = `Quantity: ${p.quantity} - $${p.price}`
-//     productTag.appendChild(additionalInfo)
-//     productContainer.appendChild(productTag)
+let addProductToShoppingCart = function(p) {
+    shopping.push(p)
+    const products = Array.from(document.getElementsByClassName("products-display"))
+    let shoppedProduct = products.find(e => e.innerHTML.includes(p.name) && e.innerHTML.includes(p.seller))
 
-// }
+}
+    
+    
 
-let addProductShoppingCart = (p) => {
-    console.log(p)}
+let displayCart = function(){
+    console.log(shopping)
+
+}
 
 
 
