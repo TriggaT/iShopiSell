@@ -17,3 +17,14 @@ div#products-container {
     width: stretch;
     height: auto;
 }
+
+.products-display{
+    text-align: center;
+    border: grey solid 1px;
+    padding: 3rem;
+    width: 8rem;
+    height: 8rem;
+    display: inline-grid;
+    margin: 1rem 2rem;
+    box-shadow: 3px 4px #99cc66
+}

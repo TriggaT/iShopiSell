@@ -1,6 +1,7 @@
 const loginbtn = document.getElementById("login-button")
 const username = document.getElementById("login")
 const loginContainer = document.getElementById("login-container")
+let productContainer = document.getElementById("products-container")
 const userBaseURL = "http://localhost:3000/users"
 const productsBaseURL = "http://localhost:3000/products"
 
@@ -49,11 +50,11 @@ loginbtn.addEventListener("click", function() {
 })
 
 let displayProducts = function(p){
-    let productContainer = document.getElementById("products-container")
     
     let productTag = document.createElement("h4")
     let additionalInfo = document.createElement("h5")
     productTag.innerText = `${p.name} by ${p.seller}`
+    productTag.className = "products-display"
     additionalInfo.innerText = `Quantity: ${p.quantity} - $${p.price}`
     productTag.appendChild(additionalInfo)
     productContainer.appendChild(productTag)
