@@ -5,6 +5,7 @@ let productContainer = document.getElementById("products-container")
 const userBaseURL = "http://localhost:3000/users"
 const productsBaseURL = "http://localhost:3000/products"
 
+
 document.addEventListener("DOMContentLoaded", function (){
     fetch(userBaseURL)
     .then(r => r.json())
@@ -37,11 +38,12 @@ function createUser(user){
 
 
 loginbtn.addEventListener("click", function() {
-    let userNameArray = User.all.map(e => e.name.toLowerCase())
+    let currentUser = User.all.find(e => e.name.toLowerCase() === username.value.toLowerCase())
     
-    if (userNameArray.includes(username.value.toLowerCase())){
+    if (!!currentUser){
+        let shopping = currentUser.shoppingCart
         loginContainer.innerHTML = ""
-        Product.all.forEach(e => displayProducts(e))
+        Product.all.forEach(e => displayProduct(e))
     }
     else {createUser(username.value)
     alert("Thank you for creating a iShopiSell account")
@@ -49,7 +51,7 @@ loginbtn.addEventListener("click", function() {
 
 })
 
-let displayProducts = function(p){
+let displayProduct = function(p){
     
     let productTag = document.createElement("h4")
     let additionalInfo = document.createElement("h5")
@@ -60,6 +62,8 @@ let displayProducts = function(p){
     productContainer.appendChild(productTag)
 
 }
+
+
 
 
 
