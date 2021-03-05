@@ -11,6 +11,19 @@ class Product {
         Product.all.push(this)
     }
 
+    displayProduct(){
+
+        let productTag = document.createElement("h4")
+        let additionalInfo = document.createElement("h5")
+        productTag.innerText = `${this.name} by ${this.seller}`
+        productTag.className = "products-display"
+        productTag.addEventListener("click", addProductShoppingCart)
+        additionalInfo.innerText = `Quantity: ${this.quantity} - $${this.price}`
+        productTag.appendChild(additionalInfo)
+        productContainer.appendChild(productTag)
+    
+    }
+
 
 
 

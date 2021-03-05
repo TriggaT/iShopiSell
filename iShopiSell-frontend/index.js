@@ -4,6 +4,7 @@ const loginContainer = document.getElementById("login-container")
 let productContainer = document.getElementById("products-container")
 const userBaseURL = "http://localhost:3000/users"
 const productsBaseURL = "http://localhost:3000/products"
+const products = document.getElementsByClassName("products-display")
 
 
 document.addEventListener("DOMContentLoaded", function (){
@@ -43,7 +44,7 @@ loginbtn.addEventListener("click", function() {
     if (!!currentUser){
         let shopping = currentUser.shoppingCart
         loginContainer.innerHTML = ""
-        Product.all.forEach(e => displayProduct(e))
+        Product.all.forEach(e => e.displayProduct())
     }
     else {createUser(username.value)
     alert("Thank you for creating a iShopiSell account")
@@ -51,17 +52,22 @@ loginbtn.addEventListener("click", function() {
 
 })
 
-let displayProduct = function(p){
-    
-    let productTag = document.createElement("h4")
-    let additionalInfo = document.createElement("h5")
-    productTag.innerText = `${p.name} by ${p.seller}`
-    productTag.className = "products-display"
-    additionalInfo.innerText = `Quantity: ${p.quantity} - $${p.price}`
-    productTag.appendChild(additionalInfo)
-    productContainer.appendChild(productTag)
+// let displayProduct = function(p){
 
-}
+//     let productTag = document.createElement("h4")
+//     let additionalInfo = document.createElement("h5")
+//     productTag.innerText = `${p.name} by ${p.seller}`
+//     productTag.className = "products-display"
+//     productTag.addEventListener("click", addProductShoppingCart)
+//     additionalInfo.innerText = `Quantity: ${p.quantity} - $${p.price}`
+//     productTag.appendChild(additionalInfo)
+//     productContainer.appendChild(productTag)
+
+// }
+
+let addProductShoppingCart = (p) => {
+    console.log(p)}
+
 
 
 
