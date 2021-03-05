@@ -48,5 +48,17 @@ loginbtn.addEventListener("click", function() {
 
 })
 
+let displayProducts = function(p){
+    let productContainer = document.getElementById("products-container")
+    
+    let productTag = document.createElement("h4")
+    let additionalInfo = document.createElement("h5")
+    productTag.innerText = `${p.name} by ${p.seller}`
+    additionalInfo.innerText = `Quantity: ${p.quantity} - $${p.price}`
+    productTag.appendChild(additionalInfo)
+    productContainer.appendChild(productTag)
+
+}
+
 
 
