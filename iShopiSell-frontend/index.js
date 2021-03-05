@@ -40,10 +40,13 @@ loginbtn.addEventListener("click", function() {
     
     if (userNameArray.includes(username.value.toLowerCase())){
         loginContainer.innerHTML = ""
+        Product.all.forEach(e => displayProducts(e))
     }
-    else createUser(username.value)
+    else {createUser(username.value)
     alert("Thank you for creating a iShopiSell account")
-    loginContainer.innerHTML = ""
+    loginContainer.innerHTML = ""}
 
 })
+
+
 
