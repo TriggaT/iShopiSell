@@ -2,7 +2,7 @@ body {
     text-align: center;
     vertical-align: middle;
     background: rgb(248,248,255);
-    background: radial-gradient(circle, rgba(248,248,255,1) 71%, rgba(153,204,102,1) 97%);
+    background: radial-gradient(circle, rgba(248,248,255,1) 75%, rgba(153,204,102,1) 100%);
 }
 
 div#login-container {
@@ -30,6 +30,14 @@ div#products-container {
     margin: 1rem 2rem;
     box-shadow: 3px 4px #99cc66
 }
+
+.btns {
+    margin-top: 3%;
+  margin-left: 0%;
+  display: inline-block;
+  float: left;
+  width: 50%;
+  }
 
 
 
