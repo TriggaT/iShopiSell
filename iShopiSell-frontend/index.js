@@ -75,8 +75,6 @@ let addProductToShoppingCart = function(p) {
 
 let displayCart = function(){
     currentUser = User.currentUser
-    debugger
-
     currentUser.shoppingCart = shopping
    
     console.log(currentUser.shoppingCart)
