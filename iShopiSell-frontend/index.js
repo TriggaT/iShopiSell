@@ -8,6 +8,7 @@ let shopping = []
 const specialButtons = document.getElementsByClassName("btns")
 const newProductButton = document.getElementById("new-product")
 const productForm = document.getElementsByClassName("new-product-form")[0]
+const shoppingCartButton = document.getElementById("shopping-cart")
 
 
 document.addEventListener("DOMContentLoaded", function (){
@@ -56,9 +57,12 @@ loginbtn.addEventListener("click", function() {
 })
 
 
-newProductButton.addEventListener("click", function(e){
-    console.log(e.target)
-    productForm.style = "display:inline;"
+newProductButton.addEventListener("click", function(){
+    if (newProductButton.innerText === "Sell New Product"){  
+    productForm.style = "display:inline;";}
+
+   
+    
 
 })
 
@@ -107,7 +111,9 @@ let addProductToShoppingCart = function(p) {
     i++
 }
 
-
+shoppingCartButton.addEventListener("click", function(e){
+    console.log(e.target)
+})
     
     
 
