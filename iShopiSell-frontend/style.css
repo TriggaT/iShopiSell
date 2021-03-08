@@ -41,4 +41,47 @@ div#products-container {
 
 
 
+.form-inner {
+    padding: 40px;
+}
+
+.form-inner input,
+.form-inner textarea {
+    text-align: center;
+    padding: 15px;
+    margin-bottom: 10px;
+    border: none;
+    border-radius: 20px;
+    background: #d0dfe8;
+}
+    
+.form-inner textarea {
+    resize: both;
+}
+    
+button {
+    padding: 10px;
+    margin-top: 20px;
+    border-radius: 20px;
+    border: none;
+    border-bottom: 4px solid #3e4f24;
+    background: #99cc66; 
+    font-size: 16px;
+    font-weight: 400;
+    color: #fff;
+}
+    
+button:hover {
+    background: #99cc66;
+} 
+    
+@media (min-width: 568px) {
+     form {
+    width: 60%;
+    }
+}
+
+
+
+
 

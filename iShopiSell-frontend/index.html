@@ -11,24 +11,22 @@
         </div>  
         <div class="btns" style="display: none;">
             <button id="shopping-cart" type="button">Shopping Cart</button> 
-        </div>  
+        </div> 
+        <div class="form-inner">
         <div id="login-container" >
             <input type="text" name="username" value="" placeholder="Enter your username" id="login"><br>
             <button type="button" id="login-button">Login/Create User</button>
         </div>
+        </div> 
 
         <form class="new-product-form" style="display: none;">
+            <div class="form-inner">
         
-            <label for="product-name">Product Name</label>
-            <input type="text" name="name" value="" id="product-name"> <br>
-        
-            <label for="product-price">Product Price</label>
-            <input type="number" name="price" id="product-price"><br>
-            
-            <label for="product-quantity">Product Quantity</label>
-            <input type="number" name="quantity" id="product-quantity"><br>
-
+            <input type="text" name="name" value="" placeholder="Product Name" id="product-name"> <br>
+            <input type="number" name="price" placeholder="Product Price"   id="product-price"><br>
+            <input type="number" name="quantity" placeholder="Product Quantity"  id="product-quantity"><br>
             <input type="submit" value="Create New Product">
+            </div>
         </form>
 
         <br><br><div id=products-container>
