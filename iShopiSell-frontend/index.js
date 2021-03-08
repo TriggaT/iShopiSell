@@ -10,9 +10,6 @@ const newProductButton = document.getElementById("new-product")
 const productForm = document.getElementsByClassName("new-product-form")[0]
 
 
-
-
-
 document.addEventListener("DOMContentLoaded", function (){
     fetch(userBaseURL)
     .then(r => r.json())
@@ -62,6 +59,35 @@ loginbtn.addEventListener("click", function() {
 newProductButton.addEventListener("click", function(e){
     console.log(e.target)
     productForm.style = "display:inline;"
+
+})
+
+productForm.addEventListener("submit", function(e){
+    e.preventDefault();
+    currentUser = User.currentUser;
+
+    let productData = {
+        name: document.getElementById("product-name").value, 
+        price: document.getElementById("product-price").value,
+        quantity: document.getElementById("product-quantity").value,
+        user: {
+            id: currentUser.id,
+            name: currentUser.name
+        }           
+    }
+    
+    let configObj = {
+        method: "POST",
+        headers: {
+        "Content-Type": "application/json",
+        "Accept": "application/json"
+        },
+        body: JSON.stringify(productData)
+    }
+
+    fetch(productsBaseURL, configObj)
+    .then(r => r.json())
+    .then(p => console.log(p))
 
 })
 
