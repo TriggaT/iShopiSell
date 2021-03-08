@@ -34,7 +34,6 @@ div#products-container {
 .btns {
     margin-top: 3%;
   margin-left: 0%;
-  display: inline-block;
   float: left;
   width: 50%;
   }

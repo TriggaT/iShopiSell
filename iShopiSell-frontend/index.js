@@ -6,6 +6,11 @@ const loginContainer = document.getElementById("login-container")
 const productContainer = document.getElementById("products-container")
 let shopping = []
 const specialButtons = document.getElementsByClassName("btns")
+
+
+
+
+
 document.addEventListener("DOMContentLoaded", function (){
     fetch(userBaseURL)
     .then(r => r.json())
@@ -42,7 +47,7 @@ loginbtn.addEventListener("click", function() {
     if (!!User.currentUser){
         loginContainer.innerHTML = ""
         Product.all.forEach(e => e.displayProduct())
-        specialButton
+        Array.from(specialButtons).map(e => e.style = "display:inline;")
     }
     else {createUser(username.value.trim())
 
