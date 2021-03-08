@@ -70,11 +70,9 @@ productForm.addEventListener("submit", function(e){
         name: document.getElementById("product-name").value, 
         price: document.getElementById("product-price").value,
         quantity: document.getElementById("product-quantity").value,
-        user: {
-            id: currentUser.id,
-            name: currentUser.name
-        }           
+        user_id: currentUser.id    
     }
+
     
     let configObj = {
         method: "POST",
@@ -87,7 +85,8 @@ productForm.addEventListener("submit", function(e){
 
     fetch(productsBaseURL, configObj)
     .then(r => r.json())
-    .then(p => console.log(p))
+    .then(p => {let product = new Product(p.id, p.name, p.price, p.quantity, currentUser.name); 
+    product.displayProduct(); productForm.style = "display:none;"})    
 
 })
 
