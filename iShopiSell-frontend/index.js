@@ -7,7 +7,7 @@ const productContainer = document.getElementById("products-container")
 let shopping = []
 const specialButtons = document.getElementsByClassName("btns")
 const newProductButton = document.getElementById("new-product")
-const productForm = document.getElementById("new-product-form")
+const productForm = document.getElementsByClassName("new-product-form")[0]
 
 
 
@@ -59,11 +59,11 @@ loginbtn.addEventListener("click", function() {
 })
 
 
-// newProductButton.addEventListener("click", function(e){
-//     console.log(e.target)
-//     productForm.style = "display:inline;"
+newProductButton.addEventListener("click", function(e){
+    console.log(e.target)
+    productForm.style = "display:inline;"
 
-// })
+})
 
 
 let addProductToShoppingCart = function(p) {

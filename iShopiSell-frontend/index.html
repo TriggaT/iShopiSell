@@ -7,7 +7,7 @@
     <body>
         <h1 id="title">iShopiSell</h1>
         <div class="btns" style="display: none;">
-            <button id='new-product'>Create New Products</button>
+            <button id='new-product'>Sell New Product</button>
         </div>  
         <div class="btns" style="display: none;">
             <button id="shopping-cart" type="button">Shopping Cart</button> 
@@ -17,16 +17,21 @@
             <button type="button" id="login-button">Login/Create User</button>
         </div>
 
-        <br>
-        <div id="new-product-form" style="display: none;">
-            <input type="text" name="name" value="" placeholder="Enter Product Name" id="product-name">
+        <form class="new-product-form" style="display: none;">
+        
+            <label for="product-name">Product Name</label>
+            <input type="text" name="name" value="" id="product-name"> <br>
+        
             <label for="product-price">Product Price</label>
-            <input type="number" name="price" id="product-price">
+            <input type="number" name="price" id="product-price"><br>
+            
             <label for="product-quantity">Product Quantity</label>
-            <input type="number" name="quantity" id="product-quantity">
-        </div>
+            <input type="number" name="quantity" id="product-quantity"><br>
 
-        <br><br><div id=products-container >
+            <input type="submit" value="Create New Product">
+        </form>
+
+        <br><br><div id=products-container>
         </div>
 
 
