@@ -126,6 +126,7 @@ shoppingCartButton.addEventListener("click", function(e){
     totalPrice.innerText = `Total Price: $${total}`
     buyProducts.innerText = "Purchase Products"
     totalPrice.id = "totalPrice"
+    buyProducts.addEventListener("click", purchase)
 
     shoppingList.append(totalPrice)
     shoppingList.append(buyProducts)
@@ -163,6 +164,17 @@ function displayAccountInfo(u){
     aBalance.innerText = `$${u.accountBalance}`
 
 
+}
+
+function purchase(){
+    let aBalance = document.getElementById("account-balance")
+    
+    aBalance.innerText = `$${currentUser.accountBalance - total}`
+    currentUser.shoppingCart = []
+
+    shoppingList.innerHTML = ""
+
+    
 }
 
 
