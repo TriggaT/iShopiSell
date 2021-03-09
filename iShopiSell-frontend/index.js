@@ -168,14 +168,33 @@ function displayAccountInfo(u){
 
 function purchase(){
     let aBalance = document.getElementById("account-balance")
+    currentUser.accountBalance = currentUser.accountBalance - total
     
-    aBalance.innerText = `$${currentUser.accountBalance - total}`
+    aBalance.innerText = `$${currentUser.accountBalance}`
     currentUser.shoppingCart = []
 
     shoppingList.innerHTML = ""
 
+    updateBalance(currentUser)
+
     
 }
+
+function updateBalance(user){
+    let configObj = {
+        method: "PATCH",
+        headers: {
+        "Content-Type": "application/json",
+        "Accept": "application/json"
+        },
+        body: JSON.stringify({account_balance:user.accountBalance})
+    }
+
+    fetch(userBaseURL+`/${user.id}`, configObj)
+    .then(r => r.json())
+    .then(u => console.log(u))
+}
+
 
 
 
