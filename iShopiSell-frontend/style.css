@@ -94,7 +94,7 @@ button:hover {
 
 li {
     list-style-image: radial-gradient(#ddd, #99cc66);
-    list-style-type: circle;
+    list-style-type:disc;
 }
 
 
