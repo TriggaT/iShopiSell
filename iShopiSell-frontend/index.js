@@ -49,6 +49,7 @@ loginbtn.addEventListener("click", function() {
         loginContainer.innerHTML = ""
         Product.all.forEach(e => e.displayProduct())
         Array.from(specialButtons).map(e => e.style = "display:inline;")
+        displayAccountInfo(User.currentUser)
     }
     else {createUser(username.value.trim())
 
@@ -142,6 +143,18 @@ let displayCart = function(){
     currentUser.shoppingCart = shopping
    
     console.log(currentUser.shoppingCart)
+
+}
+
+function displayAccountInfo(u){
+    let username = document.getElementById("user")
+    let aBalance = document.getElementById("account-balance")
+
+    // debugger
+
+    username.innerText = u.name 
+    aBalance.innerText = `$${u.accountBalance}`
+
 
 }
 
