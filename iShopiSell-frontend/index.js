@@ -9,6 +9,7 @@ const specialButtons = document.getElementsByClassName("btns")
 const newProductButton = document.getElementById("new-product")
 const productForm = document.getElementsByClassName("new-product-form")[0]
 const shoppingCartButton = document.getElementById("shopping-cart")
+const shoppingList = document.getElementById("list")
 
 
 document.addEventListener("DOMContentLoaded", function (){
@@ -112,8 +113,23 @@ let addProductToShoppingCart = function(p) {
 }
 
 shoppingCartButton.addEventListener("click", function(e){
-    console.log(e.target)
+    currentUser = User.currentUser
+    currentUser.shoppingCart = shopping
+
+    shopping.forEach(p => displayShopCart(p))
+
+
+    console.log(shopping)
 })
+
+function displayShopCart(p){
+    let shopItem = document.createElement("li")
+    shopItem.innerText = `${p.name} - $${p.price}`
+
+    shoppingList.appendChild(shopItem)
+
+
+}
     
     
 
