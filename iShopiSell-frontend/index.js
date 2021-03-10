@@ -92,7 +92,9 @@ productForm.addEventListener("submit", function(e){
     fetch(productsBaseURL, configObj)
     .then(r => r.json())
     .then(p => {let product = new Product(p.id, p.name, p.price, p.quantity, currentUser.name); 
-    product.displayProduct(); productForm.style = "display:none;"})    
+    product.displayProduct(); 
+    productForm.style = "display:none;";
+    placedProductOnMarket(product)})    
 
 })
 
@@ -248,5 +250,33 @@ function paySeller(product){
     .then(r => r.json())
     .then(u => console.log(u))
 }
+
+function placedProductOnMarket(product){
+    let seller = User.all.find(e => e.name === product.seller)
+    seller.accountBalance = seller.accountBalance - product.quantity
+    
+
+
+
+
+
+    let configObj = {
+        method: "PATCH",
+        headers: {
+        "Content-Type": "application/json",
+        "Accept": "application/json"
+        },
+        body: JSON.stringify({account_balance:seller.accountBalance})
+    }
+
+
+    fetch(userBaseURL+`/${seller.id}`, configObj)
+    .then(r => r.json())
+    .then(u => console.log(u))
+}
+
+
+
+
 
 
