@@ -119,7 +119,7 @@ shoppingCartButton.addEventListener("click", function(e){
 
 
     if (document.getElementById("totalPrice")){
-        e.preventDefault();
+        shoppingList.innerHTML = ""
     }
 
     let totalPrice = document.createElement("p")
