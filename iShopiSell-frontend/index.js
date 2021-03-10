@@ -208,7 +208,7 @@ function updateBalance(user){
 
     fetch(userBaseURL+`/${user.id}`, configObj)
     .then(r => r.json())
-    .then(u => console.log(u))
+    .then(u => console.log(u));
 }
 
 
@@ -257,6 +257,10 @@ function placedProductOnMarket(product){
     let seller = User.all.find(e => e.name === product.seller)
     seller.accountBalance = seller.accountBalance - product.quantity
 
+    let admin = User.all.find(e => e.name === "Trey")
+    admin.accountBalance = admin.accountBalance + product.quantity
+    marketProfits(admin)
+
     let aBalance = document.getElementById("account-balance")
     aBalance.innerText = `$${seller.accountBalance}`
     
@@ -276,6 +280,22 @@ function placedProductOnMarket(product){
 
 
     fetch(userBaseURL+`/${seller.id}`, configObj)
+    .then(r => r.json())
+    .then(u => console.log(u))
+}
+
+function marketProfits(admin){
+    let configObj = {
+        method: "PATCH",
+        headers: {
+        "Content-Type": "application/json",
+        "Accept": "application/json"
+        },
+        body: JSON.stringify({account_balance:admin.accountBalance})
+    }
+
+
+    fetch(userBaseURL+`/${admin.id}`, configObj)
     .then(r => r.json())
     .then(u => console.log(u))
 }
