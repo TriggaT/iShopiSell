@@ -61,7 +61,7 @@ loginbtn.addEventListener("click", function() {
 
 newProductButton.addEventListener("click", function(){
     if (newProductButton.innerText === "Sell New Product"){  
-    productForm.style = "display:inline;";}
+    productForm.style.display = "inline";}
 
    
     
@@ -117,6 +117,11 @@ shoppingCartButton.addEventListener("click", function(e){
     currentUser = User.currentUser
     currentUser.shoppingCart = shopping
 
+
+    if (document.getElementById("totalPrice")){
+        e.preventDefault();
+    }
+
     let totalPrice = document.createElement("p")
     let buyProducts = document.createElement("button")
     total = [...shopping.map(e => e.price)].reduce((a, b) => a + b)
@@ -126,10 +131,11 @@ shoppingCartButton.addEventListener("click", function(e){
     totalPrice.innerText = `Total Price: $${total}`
     buyProducts.innerText = "Purchase Products"
     totalPrice.id = "totalPrice"
-    buyProducts.addEventListener("click", purchase)
 
     shoppingList.append(totalPrice)
     shoppingList.append(buyProducts)
+
+    buyProducts.addEventListener("click", purchase)
 
 
 
@@ -158,7 +164,6 @@ function displayAccountInfo(u){
     let username = document.getElementById("user")
     let aBalance = document.getElementById("account-balance")
 
-    // debugger
 
     username.innerText = u.name 
     aBalance.innerText = `$${u.accountBalance}`
@@ -169,13 +174,16 @@ function displayAccountInfo(u){
 function purchase(){
     let aBalance = document.getElementById("account-balance")
     currentUser.accountBalance = currentUser.accountBalance - total
+
+    updateQuantities(currentUser.shoppingCart)
     
     aBalance.innerText = `$${currentUser.accountBalance}`
-    currentUser.shoppingCart = []
+    shopping = []
 
     shoppingList.innerHTML = ""
 
     updateBalance(currentUser)
+   
 
     
 }
@@ -190,11 +198,15 @@ function updateBalance(user){
         body: JSON.stringify({account_balance:user.accountBalance})
     }
 
+
     fetch(userBaseURL+`/${user.id}`, configObj)
     .then(r => r.json())
     .then(u => console.log(u))
 }
 
+function updateQuantities(products){
+    // debugger 
+}
 
 
 
