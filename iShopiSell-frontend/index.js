@@ -254,6 +254,9 @@ function paySeller(product){
 function placedProductOnMarket(product){
     let seller = User.all.find(e => e.name === product.seller)
     seller.accountBalance = seller.accountBalance - product.quantity
+
+    let aBalance = document.getElementById("account-balance")
+    aBalance.innerText = `$${seller.accountBalance}`
     
 
 
