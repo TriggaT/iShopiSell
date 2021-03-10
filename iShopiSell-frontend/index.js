@@ -175,9 +175,12 @@ function purchase(){
     let aBalance = document.getElementById("account-balance")
     currentUser.accountBalance = currentUser.accountBalance - total
 
+
     updateQuantities(currentUser.shoppingCart)
     
     aBalance.innerText = `$${currentUser.accountBalance}`
+
+
     shopping = []
 
     shoppingList.innerHTML = ""
@@ -205,11 +208,30 @@ function updateBalance(user){
 }
 
 function updateQuantities(products){
+
+    products.map(newQuantity)
     // debugger 
 }
 
 
+function newQuantity(product){
+    if (product.quantity === 0 || product.quantity === "Sold Out"){
+        product.quantity = 0
+    }
+
+    let configObj = {
+        method: "PATCH",
+        headers: {
+        "Content-Type": "application/json",
+        "Accept": "application/json"
+        },
+        body: JSON.stringify({quantity:`${product.quantity}`})
+    }
 
 
+    fetch(productsBaseURL+`/${product.id}`, configObj)
+    .then(r => r.json())
+    .then(u => console.log(product))
+}
 
 

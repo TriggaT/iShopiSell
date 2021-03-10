@@ -20,7 +20,7 @@ class Product {
         productTag.addEventListener("click", () => addProductToShoppingCart(this))
         additionalInfo.innerText = `Quantity: ${this.quantity} - $${this.price}`
         productTag.appendChild(additionalInfo)
-        productContainer.appendChild(productTag)
+        productContainer.prepend(productTag)
     
     }
 
