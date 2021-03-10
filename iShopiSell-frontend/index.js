@@ -236,6 +236,8 @@ function paySeller(product){
     let seller = User.all.find(e => e.name === product.seller)
     seller.accountBalance = seller.accountBalance + product.price 
 
+    
+
     let configObj = {
         method: "PATCH",
         headers: {
@@ -277,6 +279,8 @@ function placedProductOnMarket(product){
     .then(r => r.json())
     .then(u => console.log(u))
 }
+
+
 
 
 
