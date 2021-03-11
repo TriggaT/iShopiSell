@@ -1,12 +1,14 @@
-class UserAdapter {
+class ProductAdapter {
     constructor(baseUrl) {
         this.baseUrl =  baseUrl
     }
 
-    getUsers(){
-        return fetch(this.baseUrl)
+    getProducts(){
+        return fetch(productsBaseURL)
         .then(r => r.json())
     }
+
+
 
 
 

@@ -1,6 +1,7 @@
 const userBaseURL = "http://localhost:3000/users"
 const productsBaseURL = "http://localhost:3000/products"
 const userAdapter = new UserAdapter(userBaseURL);
+const productAdapter = new ProductAdapter(productsBaseURL);
 const loginbtn = document.getElementById("login-button")
 const username = document.getElementById("login")
 const loginContainer = document.getElementById("login-container")
@@ -17,14 +18,12 @@ document.addEventListener("DOMContentLoaded", function (){
     userAdapter.getUsers()
     .then(users => { users.forEach(u => new User(u.id, u.name, u.account_balance))
     })
-})
 
-document.addEventListener("DOMContentLoaded", function (){
-    fetch(productsBaseURL)
-    .then(r => r.json())
+    productAdapter.getProducts()
     .then(products => { products.forEach(p => new Product(p.id, p.name, p.price, p.quantity, p.user.name))
     })
 })
+
 
 function createUser(user){
     let configObj = {
