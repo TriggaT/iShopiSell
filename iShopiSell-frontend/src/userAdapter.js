@@ -22,6 +22,22 @@ class UserAdapter {
         .then(r => r.json())
     }
 
+    updateBalance(user){
+        let configObj = {
+            method: "PATCH",
+            headers: {
+            "Content-Type": "application/json",
+            "Accept": "application/json"
+            },
+            body: JSON.stringify({account_balance:user.accountBalance})
+        }
+    
+    
+        return fetch(userBaseURL+`/${user.id}`, configObj)
+        .then(r => r.json())
+        .then(u => u);
+    }
+
 
 
 

@@ -107,21 +107,6 @@ shoppingCartButton.addEventListener("click", function(e){
 })
 
 
-function updateBalance(user){
-    let configObj = {
-        method: "PATCH",
-        headers: {
-        "Content-Type": "application/json",
-        "Accept": "application/json"
-        },
-        body: JSON.stringify({account_balance:user.accountBalance})
-    }
-
-
-    fetch(userBaseURL+`/${user.id}`, configObj)
-    .then(r => r.json())
-    .then(u => console.log(u));
-}
 
 
 function newQuantity(product){

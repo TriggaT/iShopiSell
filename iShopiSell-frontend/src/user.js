@@ -31,7 +31,7 @@ class User {
         shopping = []
         shoppingList.innerHTML = ""
     
-        updateBalance(this)
+        userAdapter.updateBalance(this)
         
     }
 
