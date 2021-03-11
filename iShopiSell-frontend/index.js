@@ -87,7 +87,7 @@ shoppingCartButton.addEventListener("click", function(e){
     let totalPrice = document.createElement("p")
     let buyProducts = document.createElement("button") 
 
-    total = shopping.map(e => e.price).reduce((a, b) => a + b) - shopping.length
+    total = shopping.map(e => e.price).reduce((a, b) => a + b)
 
     shopping.forEach(p => p.displayProductInCart())
 

@@ -49,8 +49,8 @@ class Product {
 
     updateSellerAccount(){
         let seller = User.all.find(e => e.name === this.seller)
-        seller.accountBalance = seller.accountBalance + this.price 
-    
+        seller.accountBalance = seller.accountBalance + (this.price - 1) 
+        
         userAdapter.updateBalance(seller)
     }
     
