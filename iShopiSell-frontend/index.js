@@ -82,15 +82,14 @@ shoppingCartButton.addEventListener("click", function(e){
     currentUser = User.currentUser
     currentUser.shoppingCart = shopping
 
-
-
     if (document.getElementById("totalPrice")){
         shoppingList.innerHTML = ""
     }
 
     let totalPrice = document.createElement("p")
-    let buyProducts = document.createElement("button")
-    total = shopping.map(e => e.price).reduce((a, b) => a + b)
+    let buyProducts = document.createElement("button") 
+
+    total = shopping.map(e => e.price).reduce((a, b) => a + b) - shopping.length
 
     shopping.forEach(p => p.displayProductInCart())
 
@@ -107,53 +106,6 @@ shoppingCartButton.addEventListener("click", function(e){
 })
 
 
-
-function placedProductOnMarket(product){
-    let seller = User.all.find(e => e.name === product.seller)
-    seller.accountBalance = seller.accountBalance - product.quantity
-
-    let admin = User.all.find(e => e.name === "adminBank")
-    admin.accountBalance = admin.accountBalance + product.quantity
-    marketProfits(admin)
-
-    let aBalance = document.getElementById("account-balance")
-    aBalance.innerText = `$${seller.accountBalance}`
-    
-
-
-
-
-
-    let configObj = {
-        method: "PATCH",
-        headers: {
-        "Content-Type": "application/json",
-        "Accept": "application/json"
-        },
-        body: JSON.stringify({account_balance:seller.accountBalance})
-    }
-
-
-    fetch(userBaseURL+`/${seller.id}`, configObj)
-    .then(r => r.json())
-    .then(u => console.log(u))
-}
-
-function marketProfits(admin){
-    let configObj = {
-        method: "PATCH",
-        headers: {
-        "Content-Type": "application/json",
-        "Accept": "application/json"
-        },
-        body: JSON.stringify({account_balance:admin.accountBalance})
-    }
-
-
-    fetch(userBaseURL+`/${admin.id}`, configObj)
-    .then(r => r.json())
-    .then(u => console.log(u))
-}
 
 
 

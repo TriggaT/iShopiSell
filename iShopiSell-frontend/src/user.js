@@ -22,17 +22,23 @@ class User {
 
     purchaseProductsInCart(){
         let aBalance = document.getElementById("account-balance")
+
+        let market = User.all.find(e => e.id === 1)
+
+        debugger 
         
         this.accountBalance = this.accountBalance - total
+        market.accountBalance = market.accountBalance + shopping.length
+        
         this.shoppingCart.map(e => productAdapter.newQuantity(e))
         this.shoppingCart.map(e => e.updateSellerAccount())
         
         aBalance.innerText = `$${currentUser.accountBalance}`
         shopping = []
         shoppingList.innerHTML = ""
-    
+
         userAdapter.updateBalance(this)
-        
+        userAdapter.updateBalance(market)   
     }
 
 
