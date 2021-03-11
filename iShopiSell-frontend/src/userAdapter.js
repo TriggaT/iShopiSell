@@ -33,7 +33,7 @@ class UserAdapter {
         }
     
     
-        return fetch(userBaseURL+`/${user.id}`, configObj)
+        return fetch(this.baseURL+`/${user.id}`, configObj)
         .then(r => r.json())
         .then(u => u);
     }

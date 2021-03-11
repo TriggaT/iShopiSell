@@ -24,7 +24,7 @@ class User {
         let aBalance = document.getElementById("account-balance")
         
         this.accountBalance = this.accountBalance - total
-        this.shoppingCart.map(newQuantity)
+        this.shoppingCart.map(e => productAdapter.newQuantity(e))
         this.shoppingCart.map(paySeller)
         
         aBalance.innerText = `$${currentUser.accountBalance}`

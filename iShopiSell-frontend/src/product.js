@@ -45,9 +45,9 @@ class Product {
         shopItem.innerText = `${this.name} - $${this.price}`
     
         shoppingList.appendChild(shopItem)
-    
-    
+
     }
+    
 
     
 

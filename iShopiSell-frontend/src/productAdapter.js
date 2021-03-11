@@ -8,7 +8,7 @@ class ProductAdapter {
         .then(r => r.json())
     }
 
-    createNewProduct(product){
+    createNewProduct(){
         let productData = {
             name: document.getElementById("product-name").value, 
             price: document.getElementById("product-price").value,
@@ -28,6 +28,26 @@ class ProductAdapter {
         return fetch(this.baseURL, configObj)
         .then(r => r.json())
 
+    }
+
+    newQuantity(product){
+        if (product.quantity === 0 || product.quantity === "Sold Out"){
+            product.quantity = 0
+        }
+    
+        let configObj = {
+            method: "PATCH",
+            headers: {
+            "Content-Type": "application/json",
+            "Accept": "application/json"
+            },
+            body: JSON.stringify({quantity:`${product.quantity}`})
+        }
+    
+    
+        fetch(this.baseURL+`/${product.id}`, configObj)
+        .then(r => r.json())
+        .then(p => p)
     }
 
 
