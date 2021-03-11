@@ -1,10 +1,10 @@
 class UserAdapter {
-    constructor(baseUrl) {
-        this.baseUrl =  baseUrl
+    constructor(baseURL) {
+        this.baseURL =  baseURL
     }
 
     getUsers(){
-        return fetch(this.baseUrl)
+        return fetch(this.baseURL)
         .then(r => r.json())
     }
 
@@ -18,7 +18,7 @@ class UserAdapter {
             body: JSON.stringify({name:userName})
         }
     
-        return fetch(this.baseUrl, configObj)
+        return fetch(this.baseURL, configObj)
         .then(r => r.json())
     }
 

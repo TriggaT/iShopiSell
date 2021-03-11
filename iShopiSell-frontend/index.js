@@ -61,11 +61,7 @@ newProductButton.addEventListener("click", function(){
         newProductButton.innerText = "Sell New Product"
         productForm.style.display = "none";
         break;
-    }
-
-   
-    
-
+    } 
 })
 
 productForm.addEventListener("submit", function(e){
@@ -79,18 +75,8 @@ productForm.addEventListener("submit", function(e){
         user_id: currentUser.id    
     }
 
-    
-    let configObj = {
-        method: "POST",
-        headers: {
-        "Content-Type": "application/json",
-        "Accept": "application/json"
-        },
-        body: JSON.stringify(productData)
-    }
 
-    fetch(productsBaseURL, configObj)
-    .then(r => r.json())
+    productAdapter.createNewProduct(productData)
     .then(p => {let product = new Product(p.id, p.name, p.price, p.quantity, currentUser.name); 
     product.displayProduct(); 
     productForm.style = "display:none;";
