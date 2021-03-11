@@ -77,21 +77,6 @@ productForm.addEventListener("submit", function(e){
 })
 
 
-let addProductToShoppingCart = function(p) {
-    const products = Array.from(document.getElementsByClassName("products-display"))
-    let shoppedProduct = products.find(e => e.innerHTML.includes(p.name) && e.innerHTML.includes(p.seller))
-
-    let i = 1
-    if (p.quantity <= 0 || isNaN(p.quantity)){
-        p.quantity = "Sold Out"
-    }
-    else {
-        p.quantity = p.quantity - i;
-        shopping.push(p)
-    }
-    shoppedProduct.childNodes[1].innerText = `Quantity: ${p.quantity} - $${p.price}`
-    i++
-}
 
 shoppingCartButton.addEventListener("click", function(e){
     currentUser = User.currentUser

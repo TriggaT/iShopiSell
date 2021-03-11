@@ -17,11 +17,27 @@ class Product {
         let additionalInfo = document.createElement("h5")
         productTag.innerText = `${this.name} by ${this.seller}`
         productTag.className = "products-display"
-        productTag.addEventListener("click", () => addProductToShoppingCart(this))
+        productTag.addEventListener("click", () => this.addProductToShoppingCart())
         additionalInfo.innerText = `Quantity: ${this.quantity} - $${this.price}`
         productTag.appendChild(additionalInfo)
         productContainer.prepend(productTag)
     
+    }
+
+    addProductToShoppingCart(){
+        const products = Array.from(document.getElementsByClassName("products-display"))
+        let shoppedProduct = products.find(e => e.innerHTML.includes(this.name) && e.innerHTML.includes(this.seller))
+    
+        let i = 1
+        if (this.quantity <= 0 || isNaN(this.quantity)){
+            this.quantity = "Sold Out"
+        }
+        else {
+            this.quantity = this.quantity - i;
+            shopping.push(this)
+        }
+        shoppedProduct.childNodes[1].innerText = `Quantity: ${this.quantity} - $${this.price}`
+        i++
     }
 
     
