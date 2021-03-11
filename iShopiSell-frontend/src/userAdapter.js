@@ -8,7 +8,7 @@ class UserAdapter {
         .then(r => r.json())
     }
 
-    makeUser(userName){
+    makeUser(userName){ 
         let configObj = {
             method: "POST",
             headers: {
@@ -17,6 +17,7 @@ class UserAdapter {
             },
             body: JSON.stringify({name:userName})
         }
+
     
         return fetch(this.baseURL, configObj)
         .then(r => r.json())

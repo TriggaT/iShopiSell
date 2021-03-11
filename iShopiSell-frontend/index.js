@@ -25,14 +25,16 @@ document.addEventListener("DOMContentLoaded", function (){
 loginbtn.addEventListener("click", function() {
     User.currentUser = User.all.find(e => e.name.toLowerCase().trim() === username.value.toLowerCase())
     
+    
     if (!!User.currentUser){
         User.currentUser.displayAccountInfo()
     }
     if (!User.currentUser){
-        createUser(username.value.trim())
-
-       
-    alert("Thank you for creating a iShopiSell account")
+        userAdapter.makeUser(username.value.trim())
+        .then(u => {let user = new User(u.id, u.name, u.account_balance)
+            alert("Thank you for creating a iShopiSell account")
+            user.displayAccountInfo()
+        })
     }
 
     // User.currentUser = User.all.find(e => e.name.toLowerCase().trim() === username.value.toLowerCase())
@@ -42,11 +44,6 @@ loginbtn.addEventListener("click", function() {
     Array.from(specialButtons).map(e => e.style = "display:inline;")
 
 })
-
-function createUser(user){
-    userAdapter.makeUser(user)
-    .then(u => new User(u.id, u.name, u.account_balance))
-}
 
 
 newProductButton.addEventListener("click", function(){
@@ -72,7 +69,6 @@ productForm.addEventListener("submit", function(e){
     productForm.style = "display:none;";})    
 
 })
-
 
 
 shoppingCartButton.addEventListener("click", function(e){
