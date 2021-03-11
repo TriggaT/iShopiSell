@@ -9,13 +9,20 @@ class ProductAdapter {
     }
 
     createNewProduct(product){
+        let productData = {
+            name: document.getElementById("product-name").value, 
+            price: document.getElementById("product-price").value,
+            quantity: document.getElementById("product-quantity").value,
+            user_id: currentUser.id    
+        }
+
         let configObj = {
             method: "POST",
             headers: {
             "Content-Type": "application/json",
             "Accept": "application/json"
             },
-            body: JSON.stringify(product)
+            body: JSON.stringify(productData)
         }
     
         return fetch(this.baseURL, configObj)
