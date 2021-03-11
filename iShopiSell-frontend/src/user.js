@@ -25,7 +25,7 @@ class User {
         
         this.accountBalance = this.accountBalance - total
         this.shoppingCart.map(e => productAdapter.newQuantity(e))
-        this.shoppingCart.map(paySeller)
+        this.shoppingCart.map(e => e.updateSellerAccount())
         
         aBalance.innerText = `$${currentUser.accountBalance}`
         shopping = []

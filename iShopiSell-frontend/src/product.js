@@ -45,7 +45,13 @@ class Product {
         shopItem.innerText = `${this.name} - $${this.price}`
     
         shoppingList.appendChild(shopItem)
+    }
 
+    updateSellerAccount(){
+        let seller = User.all.find(e => e.name === this.seller)
+        seller.accountBalance = seller.accountBalance + this.price 
+    
+        userAdapter.updateBalance(seller)
     }
     
 

@@ -90,7 +90,7 @@ shoppingCartButton.addEventListener("click", function(e){
 
     let totalPrice = document.createElement("p")
     let buyProducts = document.createElement("button")
-    total = [...shopping.map(e => e.price)].reduce((a, b) => a + b)
+    total = shopping.map(e => e.price).reduce((a, b) => a + b)
 
     shopping.forEach(p => p.displayProductInCart())
 
@@ -107,48 +107,6 @@ shoppingCartButton.addEventListener("click", function(e){
 })
 
 
-
-
-function newQuantity(product){
-    if (product.quantity === 0 || product.quantity === "Sold Out"){
-        product.quantity = 0
-    }
-
-    let configObj = {
-        method: "PATCH",
-        headers: {
-        "Content-Type": "application/json",
-        "Accept": "application/json"
-        },
-        body: JSON.stringify({quantity:`${product.quantity}`})
-    }
-
-
-    fetch(productsBaseURL+`/${product.id}`, configObj)
-    .then(r => r.json())
-    .then(u => console.log(product))
-}
-
-function paySeller(product){
-    let seller = User.all.find(e => e.name === product.seller)
-    seller.accountBalance = seller.accountBalance + product.price 
-
-    
-
-    let configObj = {
-        method: "PATCH",
-        headers: {
-        "Content-Type": "application/json",
-        "Accept": "application/json"
-        },
-        body: JSON.stringify({account_balance:seller.accountBalance})
-    }
-
-
-    fetch(userBaseURL+`/${seller.id}`, configObj)
-    .then(r => r.json())
-    .then(u => console.log(u))
-}
 
 function placedProductOnMarket(product){
     let seller = User.all.find(e => e.name === product.seller)
