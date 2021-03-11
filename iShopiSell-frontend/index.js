@@ -9,7 +9,7 @@ const productContainer = document.getElementById("products-container")
 let shopping = []
 const specialButtons = document.getElementsByClassName("btns")
 const newProductButton = document.getElementById("new-product")
-const productForm = document.getElementsByClassName("new-product-form")[0]
+let productForm = document.getElementById("new-product-form")
 const shoppingCartButton = document.getElementById("shopping-cart")
 const shoppingList = document.getElementById("shoppingList")
 
@@ -28,8 +28,11 @@ loginbtn.addEventListener("click", function() {
     User.currentUser = User.all.find(e => e.name.toLowerCase().trim() === username.value.toLowerCase())
     
     if (!!User.currentUser){
+        User.currentUser.displayAccountInfo()
     }
-    else {createUser(username.value.trim())
+    if (!User.currentUser){
+        createUser(username.value.trim())
+        debugger
        
     alert("Thank you for creating a iShopiSell account")
     }
@@ -37,10 +40,8 @@ loginbtn.addEventListener("click", function() {
     // User.currentUser = User.all.find(e => e.name.toLowerCase().trim() === username.value.toLowerCase())
 
     loginContainer.innerHTML = ""
-    User.currentUser.displayAccountInfo()
     Product.all.forEach(e => e.displayProduct())
     Array.from(specialButtons).map(e => e.style = "display:inline;")
-   
 
 })
 
@@ -51,8 +52,16 @@ function createUser(user){
 
 
 newProductButton.addEventListener("click", function(){
-    if (newProductButton.innerText === "Sell New Product"){  
-    productForm.style.display = "inline";}
+    switch(newProductButton.innerText) {
+        case "Sell New Product":
+        newProductButton.innerText = "View Products Only"
+        productForm.style.display = "inline";
+        break;
+        case "View Products Only":
+        newProductButton.innerText = "Sell New Product"
+        productForm.style.display = "none";
+        break;
+    }
 
    
     
