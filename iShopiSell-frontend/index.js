@@ -29,15 +29,19 @@ loginbtn.addEventListener("click", function() {
     if (!!User.currentUser){
         User.currentUser.displayAccountInfo()
     }
-    if (!User.currentUser){
-        userAdapter.makeUser(username.value.trim())
+    if (!User.currentUser){  
+        if (!username.value.trim()){
+            alert("Your username can not be empty")
+            return 
+        }
+        else userAdapter.makeUser(username.value.trim())
         .then(u => {let user = new User(u.id, u.name, u.account_balance)
-            alert("Thank you for creating a iShopiSell account")
+            alert("Thank you for creating an iShopiSell account. You can add any item to your shopping cart with just a click")
             user.displayAccountInfo()
+            User.currentUser = user 
         })
     }
 
-    // User.currentUser = User.all.find(e => e.name.toLowerCase().trim() === username.value.toLowerCase())
 
     loginContainer.innerHTML = ""
     Product.all.forEach(e => e.displayProduct())

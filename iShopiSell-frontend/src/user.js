@@ -10,7 +10,7 @@ class User {
         User.all.push(this)
     }
 
-    static currentUser = {}
+    static currentUser;
 
     displayAccountInfo(){
         let username = document.getElementById("user")
