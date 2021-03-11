@@ -1,7 +1,5 @@
-const userBaseURL = "http://localhost:3000/users"
-const productsBaseURL = "http://localhost:3000/products"
-const userAdapter = new UserAdapter(userBaseURL);
-const productAdapter = new ProductAdapter(productsBaseURL);
+const userAdapter = new UserAdapter("http://localhost:3000/users");
+const productAdapter = new ProductAdapter("http://localhost:3000/products");
 const loginbtn = document.getElementById("login-button")
 const username = document.getElementById("login")
 const loginContainer = document.getElementById("login-container")
