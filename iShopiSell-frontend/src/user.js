@@ -22,10 +22,8 @@ class User {
 
     purchaseProductsInCart(){
         let aBalance = document.getElementById("account-balance")
-
+ 
         let market = User.all.find(e => e.id === 1)
-
-        debugger 
         
         this.accountBalance = this.accountBalance - total
         market.accountBalance = market.accountBalance + shopping.length
