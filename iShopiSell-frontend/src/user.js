@@ -12,6 +12,14 @@ class User {
 
     static currentUser = {}
 
+    displayAccountInfo(){
+        let username = document.getElementById("user")
+        let aBalance = document.getElementById("account-balance")
+    
+        username.innerText = this.name 
+        aBalance.innerText = `$${this.accountBalance}`
+    }
+
 
 
 

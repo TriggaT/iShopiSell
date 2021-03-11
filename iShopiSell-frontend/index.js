@@ -24,38 +24,30 @@ document.addEventListener("DOMContentLoaded", function (){
     })
 })
 
-
-function createUser(user){
-    let configObj = {
-        method: "POST",
-        headers: {
-        "Content-Type": "application/json",
-        "Accept": "application/json"
-        },
-        body: JSON.stringify({name:user})
-    }
-
-    fetch(userBaseURL, configObj)
-    .then(r => r.json())
-    .then(u => new User(u.id, u.name, u.account_balance))
-}
-
-
 loginbtn.addEventListener("click", function() {
     User.currentUser = User.all.find(e => e.name.toLowerCase().trim() === username.value.toLowerCase())
     
     if (!!User.currentUser){
-        loginContainer.innerHTML = ""
-        Product.all.forEach(e => e.displayProduct())
-        Array.from(specialButtons).map(e => e.style = "display:inline;")
-        displayAccountInfo(User.currentUser)
     }
     else {createUser(username.value.trim())
-
+       
     alert("Thank you for creating a iShopiSell account")
-    loginContainer.innerHTML = ""}
+    }
+
+    // User.currentUser = User.all.find(e => e.name.toLowerCase().trim() === username.value.toLowerCase())
+
+    loginContainer.innerHTML = ""
+    User.currentUser.displayAccountInfo()
+    Product.all.forEach(e => e.displayProduct())
+    Array.from(specialButtons).map(e => e.style = "display:inline;")
+   
 
 })
+
+function createUser(user){
+    userAdapter.makeUser(user)
+    .then(u => new User(u.id, u.name, u.account_balance))
+}
 
 
 newProductButton.addEventListener("click", function(){
@@ -161,16 +153,6 @@ let displayCart = function(){
 
 }
 
-function displayAccountInfo(u){
-    let username = document.getElementById("user")
-    let aBalance = document.getElementById("account-balance")
-
-
-    username.innerText = u.name 
-    aBalance.innerText = `$${u.accountBalance}`
-
-
-}
 
 function purchase(){
     let aBalance = document.getElementById("account-balance")
