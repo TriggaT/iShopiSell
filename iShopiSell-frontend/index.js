@@ -69,8 +69,7 @@ productForm.addEventListener("submit", function(e){
     productAdapter.createNewProduct()
     .then(p => {let product = new Product(p.id, p.name, p.price, p.quantity, currentUser.name); 
     product.displayProduct(); 
-    productForm.style = "display:none;";
-    placedProductOnMarket(product)})    
+    productForm.style = "display:none;";})    
 
 })
 
