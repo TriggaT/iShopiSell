@@ -257,7 +257,7 @@ function placedProductOnMarket(product){
     let seller = User.all.find(e => e.name === product.seller)
     seller.accountBalance = seller.accountBalance - product.quantity
 
-    let admin = User.all.find(e => e.name === "Trey")
+    let admin = User.all.find(e => e.name === "adminBank")
     admin.accountBalance = admin.accountBalance + product.quantity
     marketProfits(admin)
 
