@@ -3,7 +3,12 @@ class UserAdapter {
         this.baseUrl =  baseUrl
     }
 
-    
+    getUsers(){
+        return fetch(this.baseUrl)
+        .then(r => r.json())
+    }
+
+
 
 
 
