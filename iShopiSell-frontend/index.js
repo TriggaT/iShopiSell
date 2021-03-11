@@ -32,7 +32,7 @@ loginbtn.addEventListener("click", function() {
     }
     if (!User.currentUser){
         createUser(username.value.trim())
-        debugger
+
        
     alert("Thank you for creating a iShopiSell account")
     }
@@ -83,6 +83,7 @@ shoppingCartButton.addEventListener("click", function(e){
     currentUser.shoppingCart = shopping
 
 
+
     if (document.getElementById("totalPrice")){
         shoppingList.innerHTML = ""
     }
@@ -91,7 +92,7 @@ shoppingCartButton.addEventListener("click", function(e){
     let buyProducts = document.createElement("button")
     total = [...shopping.map(e => e.price)].reduce((a, b) => a + b)
 
-    shopping.forEach(p => displayShopCart(p))
+    shopping.forEach(p => p.displayProductInCart())
 
     totalPrice.innerText = `Total Price: $${total}`
     buyProducts.innerText = "Purchase Products"
@@ -100,53 +101,11 @@ shoppingCartButton.addEventListener("click", function(e){
     shoppingList.append(totalPrice)
     shoppingList.append(buyProducts)
 
-    buyProducts.addEventListener("click", purchase)
-
+    buyProducts.addEventListener("click", e=> currentUser.purchaseProductsInCart())
 
 
 })
 
-function displayShopCart(p){
-    let shopItem = document.createElement("li")
-    shopItem.innerText = `${p.name} - $${p.price}`
-
-    shoppingList.appendChild(shopItem)
-
-
-}
-    
-    
-
-let displayCart = function(){
-    currentUser = User.currentUser
-    currentUser.shoppingCart = shopping
-   
-    console.log(currentUser.shoppingCart)
-
-}
-
-
-function purchase(){
-    let aBalance = document.getElementById("account-balance")
-    currentUser.accountBalance = currentUser.accountBalance - total
-
-
-    currentUser.shoppingCart.map(newQuantity)
-
-    currentUser.shoppingCart.map(paySeller)
-    
-    aBalance.innerText = `$${currentUser.accountBalance}`
-
-
-    shopping = []
-
-    shoppingList.innerHTML = ""
-
-    updateBalance(currentUser)
-   
-
-    
-}
 
 function updateBalance(user){
     let configObj = {

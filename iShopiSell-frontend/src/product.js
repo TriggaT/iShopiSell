@@ -40,6 +40,15 @@ class Product {
         i++
     }
 
+    displayProductInCart(){
+        let shopItem = document.createElement("li")
+        shopItem.innerText = `${this.name} - $${this.price}`
+    
+        shoppingList.appendChild(shopItem)
+    
+    
+    }
+
     
 
 

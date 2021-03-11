@@ -20,6 +20,21 @@ class User {
         aBalance.innerText = `$${this.accountBalance}`
     }
 
+    purchaseProductsInCart(){
+        let aBalance = document.getElementById("account-balance")
+        
+        this.accountBalance = this.accountBalance - total
+        this.shoppingCart.map(newQuantity)
+        this.shoppingCart.map(paySeller)
+        
+        aBalance.innerText = `$${currentUser.accountBalance}`
+        shopping = []
+        shoppingList.innerHTML = ""
+    
+        updateBalance(this)
+        
+    }
+
 
 
 
