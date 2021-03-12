@@ -12,17 +12,21 @@ class Product {
     }
 
     displayProduct(){
-
         let productTag = document.createElement("h4")
         let additionalInfo = document.createElement("h5")
+        let removeItem = document.createElement("button")
+
         productTag.innerText = `${this.name} by ${this.seller}`
         productTag.className = "products-display"
-        productTag.addEventListener("click", () => this.addProductToShoppingCart())
+        productTag.addEventListener("click", e => this.addProductToShoppingCart())
         if (this.quantity <= 0 || isNaN(this.quantity)){
             this.quantity = "Sold Out"
         }
         additionalInfo.innerText = `Quantity: ${this.quantity} - $${this.price}`
-        productTag.appendChild(additionalInfo)
+        removeItem.id = "remove-item-btn"
+        removeItem.innerText = "Remove from Cart"
+        removeItem.addEventListener("click", e => this.removeFromCart())
+        productTag.append(additionalInfo, removeItem)
         productContainer.prepend(productTag)
     
     }
@@ -32,7 +36,7 @@ class Product {
         let shoppedProduct = products.find(e => e.innerHTML.includes(this.name) && e.innerHTML.includes(this.seller))
         
         let i = 1
-        if (this.quantity <= 1 || isNaN(this.quantity)){
+        if (this.quantity <= 0 || isNaN(this.quantity)){
             this.quantity = "Sold Out"
         }
         else {
@@ -55,6 +59,32 @@ class Product {
         seller.accountBalance = seller.accountBalance + (this.price - 1) 
 
         userAdapter.updateBalance(seller)
+    }
+
+    removeFromCart(){
+        
+        const products = Array.from(document.getElementsByClassName("products-display"))
+        let shoppedProduct = products.find(e => e.innerHTML.includes(this.name) && e.innerHTML.includes(this.seller))
+
+        let item = shopping.find(e => e.name === this.name)
+        if(!!item){
+            this.quantity = this.quantity + 1
+            // shoppedProduct.childNodes[1].innerText = `Quantity: ${this.quantity} - $${this.price}`
+            const index = shopping.indexOf(item);
+            if (index > -1) {
+                shopping.splice(index, 1);
+            }
+
+
+        }
+
+
+
+        this.quantity = this.quantity + 1
+        shoppedProduct.childNodes[1].innerText = `Quantity: ${this.quantity} - $${this.price}`
+
+        return shopping 
+
     }
 
 
