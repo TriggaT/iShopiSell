@@ -2,6 +2,7 @@ const userAdapter = new UserAdapter("http://localhost:3000/users");
 const productAdapter = new ProductAdapter("http://localhost:3000/products");
 const loginbtn = document.getElementById("login-button")
 const username = document.getElementById("login")
+const password = document.getElementById("password")
 const loginContainer = document.getElementById("login-container")
 const productContainer = document.getElementById("products-container")
 let shopping = []
@@ -14,7 +15,7 @@ const shoppingList = document.getElementById("shoppingList")
 
 document.addEventListener("DOMContentLoaded", function (){
     userAdapter.getUsers()
-    .then(users => { users.forEach(u => new User(u.id, u.name, u.account_balance, this.password))
+    .then(users => { users.forEach(u => new User(u.id, u.name, u.account_balance, u.password))
     })
 
     productAdapter.getProducts()
@@ -25,17 +26,21 @@ document.addEventListener("DOMContentLoaded", function (){
 loginbtn.addEventListener("click", function() {
     User.currentUser = User.all.find(e => e.name.toLowerCase().trim() === username.value.toLowerCase())
     
-    if (!!User.currentUser){
+ 
+
+    
+    if (!!User.currentUser && User.currentUser.password === password.value){
         User.currentUser.displayAccountInfo()
     }
-    if (!User.currentUser){  
-        if (!username.value.trim()){
-            alert("Your username can not be empty")
+    if (!User.currentUser || User.currentUser.password != password.value){  
+        if (!username.value.trim() || password.value === ""){
+            alert("Your username or password can not be empty")
             return 
         }
-        else userAdapter.makeUser(username.value.trim())
-        .then(u => {let user = new User(u.id, u.name, u.account_balance)
-            alert("Thank you for creating an iShopiSell account. You can add any item to your shopping cart with just a click")
+
+        else userAdapter.makeUser(username.value.trim(), password.value)
+        .then(u => {let user = new User(u.id, u.name, u.account_balance, u.password)
+            alert("Thank you for creating an iShopiSell account.")
             user.displayAccountInfo()
             User.currentUser = user 
         })
