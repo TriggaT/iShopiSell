@@ -1,6 +1,7 @@
 const userAdapter = new UserAdapter("http://localhost:3000/users");
 const productAdapter = new ProductAdapter("http://localhost:3000/products");
 const loginbtn = document.getElementById("login-button")
+const logoutbtn = document.getElementById("logout")
 const username = document.getElementById("login")
 const password = document.getElementById("password")
 const loginContainer = document.getElementById("login-container")
@@ -49,6 +50,7 @@ loginbtn.addEventListener("click", function() {
     }
 
     loginContainer.innerHTML = ""
+    logoutbtn.style = "display:inline;"
     Product._all.forEach(e => e.displayProduct())
     Array.from(specialButtons).map(e => e.style = "display:inline;")
 
@@ -80,7 +82,7 @@ productForm.addEventListener("submit", function(e){
 })
 
 
-shoppingCartButton.addEventListener("click", function(e){
+shoppingCartButton.addEventListener("click", function(){
     currentUser = User.currentUser
     currentUser.shoppingCart = shopping
 
@@ -105,6 +107,10 @@ shoppingCartButton.addEventListener("click", function(e){
     buyProducts.addEventListener("click", e=> currentUser.purchaseProductsInCart())
 
 })
+
+logoutbtn.addEventListener("click", function(){
+    console.log(this)
+} )
 
 
 
