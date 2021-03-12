@@ -48,7 +48,6 @@ loginbtn.addEventListener("click", function() {
         })
     }
 
-
     loginContainer.innerHTML = ""
     Product.all.forEach(e => e.displayProduct())
     Array.from(specialButtons).map(e => e.style = "display:inline;")
