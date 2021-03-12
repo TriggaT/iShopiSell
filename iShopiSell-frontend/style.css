@@ -24,7 +24,7 @@ div#products-container {
     border: grey solid 1px;
     padding: 3rem;
     width: 8rem;
-    height: 8rem;
+    height:10rem;
     display: inline-grid;
     margin: 1rem 2rem;
     box-shadow: 3px 4px #99cc66
@@ -97,9 +97,18 @@ li {
 }
 
 #remove-item-btn {
-    font-size: 10px;
+    font-size: 12px;
+     padding: 5px;
+    margin-top: 5px;
+    border-radius: 5px;
 }
 
+#add-item-btn {
+    font-size: 12px;
+    padding: 5px;
+    margin-top: 5px;
+    border-radius: 5px;
+}
 
 
 

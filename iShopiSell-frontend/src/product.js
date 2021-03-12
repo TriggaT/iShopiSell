@@ -15,6 +15,11 @@ class Product {
         let productTag = document.createElement("h4")
         let additionalInfo = document.createElement("h5")
         let removeItem = document.createElement("button")
+        let addItem = document.createElement("button")
+        removeItem.id = "remove-item-btn"
+        removeItem.innerText = "Remove from Cart"
+        addItem.id = "add-item-btn"
+        addItem.innerText = "Add to Cart"
 
         productTag.innerText = `${this.name} by ${this.seller}`
         productTag.className = "products-display"
@@ -23,10 +28,9 @@ class Product {
             this.quantity = "Sold Out"
         }
         additionalInfo.innerText = `Quantity: ${this.quantity} - $${this.price}`
-        removeItem.id = "remove-item-btn"
-        removeItem.innerText = "Remove from Cart"
+        
         removeItem.addEventListener("click", e => this.removeFromCart())
-        productTag.append(additionalInfo, removeItem)
+        productTag.append(additionalInfo, addItem, removeItem)
         productContainer.prepend(productTag)
     
     }
@@ -69,13 +73,10 @@ class Product {
         let item = shopping.find(e => e.name === this.name)
         if(!!item){
             this.quantity = this.quantity + 1
-            // shoppedProduct.childNodes[1].innerText = `Quantity: ${this.quantity} - $${this.price}`
             const index = shopping.indexOf(item);
             if (index > -1) {
                 shopping.splice(index, 1);
             }
-
-
         }
 
 
@@ -83,9 +84,11 @@ class Product {
         this.quantity = this.quantity + 1
         shoppedProduct.childNodes[1].innerText = `Quantity: ${this.quantity} - $${this.price}`
 
-        return shopping 
+        return shopping.pop() 
 
     }
+
+
 
 
     
