@@ -72,6 +72,8 @@ class Product {
         let shoppedProduct = products.find(e => e.innerHTML.includes(this.name) && e.innerHTML.includes(this.seller))
         let item = shopping.find(e => e.name === this.name)
 
+        debugger 
+
         
         if(!!item){
             this.quantity = this.quantity + 1
@@ -86,7 +88,7 @@ class Product {
 
     }
 
-    
+
 
 
 

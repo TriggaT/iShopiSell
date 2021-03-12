@@ -12,7 +12,7 @@ const newProductButton = document.getElementById("new-product")
 let productForm = document.getElementById("new-product-form")
 const shoppingCartButton = document.getElementById("shopping-cart")
 const shoppingList = document.getElementById("shoppingList")
-
+const message = document.getElementById("message")
 
 document.addEventListener("DOMContentLoaded", function (){
     userAdapter.getUsers()
@@ -50,6 +50,7 @@ loginbtn.addEventListener("click", function() {
     }
 
     loginContainer.style = "display:none;"
+    message.style = "display:block;"
     logoutbtn.style = "display:inline;"
     Product._all.forEach(e => e.displayProduct())
     Array.from(specialButtons).map(e => e.style = "display:inline;")
