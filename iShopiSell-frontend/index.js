@@ -121,6 +121,7 @@ logoutbtn.addEventListener("click", function(){
     username.innerText = ""
     aBalance.innerText = ""
     loginContainer.style = "display:inline;"
+    message.style =  "display:none;"
     logoutbtn.style = "display:none;"
     productContainer.innerHTML = ""
     shoppingList.innerHTML = ""
