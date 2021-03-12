@@ -6,6 +6,7 @@ class User {
         this.id = id
         this.name = name 
         this.accountBalance = accountBalance
+        this.password = password 
         this.shoppingCart = shoppingCart
         User.all.push(this)
     }

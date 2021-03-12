@@ -68,7 +68,6 @@ class Product {
     }
 
     removeFromCart(){
-        
         const products = Array.from(document.getElementsByClassName("products-display"))
         let shoppedProduct = products.find(e => e.innerHTML.includes(this.name) && e.innerHTML.includes(this.seller))
         let item = shopping.find(e => e.name === this.name)
@@ -81,7 +80,6 @@ class Product {
                 shopping.splice(index, 1);
             }
         }
-
 
         return shopping
 
