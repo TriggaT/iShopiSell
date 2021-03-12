@@ -18,6 +18,7 @@ class UserAdapter {
             body: JSON.stringify({name:userName, password:userPassword})
         }
 
+
     
         return fetch(this.baseURL, configObj)
         .then(r => r.json())

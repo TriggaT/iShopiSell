@@ -26,18 +26,20 @@ document.addEventListener("DOMContentLoaded", function (){
 loginbtn.addEventListener("click", function() {
     User.currentUser = User.all.find(e => e.name.toLowerCase().trim() === username.value.toLowerCase())
     
- 
-
-    
     if (!!User.currentUser && User.currentUser.password === password.value){
         User.currentUser.displayAccountInfo()
     }
+
     if (!User.currentUser || User.currentUser.password != password.value){  
         if (!username.value.trim() || password.value === ""){
             alert("Your username or password can not be empty")
             return 
         }
+        if (User.currentUser.password != password.value){
+            alert("Your password is incorrect")
+            return
 
+        }
         else userAdapter.makeUser(username.value.trim(), password.value)
         .then(u => {let user = new User(u.id, u.name, u.account_balance, u.password)
             alert("Thank you for creating an iShopiSell account.")
