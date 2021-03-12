@@ -25,7 +25,6 @@ document.addEventListener("DOMContentLoaded", function (){
 loginbtn.addEventListener("click", function() {
     User.currentUser = User.all.find(e => e.name.toLowerCase().trim() === username.value.toLowerCase())
     
-    
     if (!!User.currentUser){
         User.currentUser.displayAccountInfo()
     }
@@ -98,7 +97,6 @@ shoppingCartButton.addEventListener("click", function(e){
     shoppingList.append(buyProducts)
 
     buyProducts.addEventListener("click", e=> currentUser.purchaseProductsInCart())
-
 
 })
 

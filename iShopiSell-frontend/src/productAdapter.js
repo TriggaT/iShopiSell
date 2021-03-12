@@ -50,14 +50,5 @@ class ProductAdapter {
         .then(p => p)
     }
 
-    
-
-
-
-
-
-
-
-
 
 }

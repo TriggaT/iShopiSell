@@ -18,6 +18,9 @@ class Product {
         productTag.innerText = `${this.name} by ${this.seller}`
         productTag.className = "products-display"
         productTag.addEventListener("click", () => this.addProductToShoppingCart())
+        if (this.quantity <= 1 || isNaN(this.quantity)){
+            this.quantity = "Sold Out"
+        }
         additionalInfo.innerText = `Quantity: ${this.quantity} - $${this.price}`
         productTag.appendChild(additionalInfo)
         productContainer.prepend(productTag)
@@ -29,10 +32,8 @@ class Product {
         let shoppedProduct = products.find(e => e.innerHTML.includes(this.name) && e.innerHTML.includes(this.seller))
     
         let i = 1
-        if (this.quantity <= 0 || isNaN(this.quantity)){
-            this.quantity = "Sold Out"
-        }
-        else {
+        
+        if (this.quantity){
             this.quantity = this.quantity - i;
             shopping.push(this)
         }
@@ -50,9 +51,11 @@ class Product {
     updateSellerAccount(){
         let seller = User.all.find(e => e.name === this.seller)
         seller.accountBalance = seller.accountBalance + (this.price - 1) 
-        
+
         userAdapter.updateBalance(seller)
     }
+
+
     
 
     
