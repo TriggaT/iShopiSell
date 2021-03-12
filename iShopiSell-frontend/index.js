@@ -14,7 +14,7 @@ const shoppingList = document.getElementById("shoppingList")
 
 document.addEventListener("DOMContentLoaded", function (){
     userAdapter.getUsers()
-    .then(users => { users.forEach(u => new User(u.id, u.name, u.account_balance))
+    .then(users => { users.forEach(u => new User(u.id, u.name, u.account_balance, this.password))
     })
 
     productAdapter.getProducts()
