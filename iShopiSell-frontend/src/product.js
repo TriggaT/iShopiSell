@@ -16,20 +16,22 @@ class Product {
         let additionalInfo = document.createElement("h5")
         let removeItem = document.createElement("button")
         let addItem = document.createElement("button")
+
         removeItem.id = "remove-item-btn"
         removeItem.innerText = "Remove from Cart"
         addItem.id = "add-item-btn"
         addItem.innerText = "Add to Cart"
-
         productTag.innerText = `${this.name} by ${this.seller}`
         productTag.className = "products-display"
-        productTag.addEventListener("click", e => this.addProductToShoppingCart())
+
+        addItem.addEventListener("click", e => this.addProductToShoppingCart())
+        removeItem.addEventListener("click", e => this.removeFromCart())
+
         if (this.quantity <= 0 || isNaN(this.quantity)){
             this.quantity = "Sold Out"
         }
         additionalInfo.innerText = `Quantity: ${this.quantity} - $${this.price}`
         
-        removeItem.addEventListener("click", e => this.removeFromCart())
         productTag.append(additionalInfo, addItem, removeItem)
         productContainer.prepend(productTag)
     
@@ -69,10 +71,11 @@ class Product {
         
         const products = Array.from(document.getElementsByClassName("products-display"))
         let shoppedProduct = products.find(e => e.innerHTML.includes(this.name) && e.innerHTML.includes(this.seller))
-
         let item = shopping.find(e => e.name === this.name)
+        
         if(!!item){
             this.quantity = this.quantity + 1
+            shoppedProduct.childNodes[1].innerText = `Quantity: ${this.quantity} - $${this.price}`
             const index = shopping.indexOf(item);
             if (index > -1) {
                 shopping.splice(index, 1);
@@ -80,11 +83,7 @@ class Product {
         }
 
 
-
-        this.quantity = this.quantity + 1
-        shoppedProduct.childNodes[1].innerText = `Quantity: ${this.quantity} - $${this.price}`
-
-        return shopping.pop() 
+        return shopping
 
     }
 
