@@ -113,8 +113,10 @@ logoutbtn.addEventListener("click", function(){
     let aBalance = document.getElementById("account-balance")
     let additionalInfo = document.createElement("h5")
 
+    let items = [...shopping]
+
     User.currentUser = {} 
-    shopping.forEach(e => e.removeFromCart())
+    items.forEach(e => e.removeFromCart())
     username.innerText = ""
     aBalance.innerText = ""
     loginContainer.style = "display:inline;"
