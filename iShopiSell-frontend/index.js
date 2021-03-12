@@ -24,7 +24,7 @@ document.addEventListener("DOMContentLoaded", function (){
 })
 
 loginbtn.addEventListener("click", function() {
-    User.currentUser = User.all.find(e => e.name.toLowerCase().trim() === username.value.toLowerCase())
+    User.currentUser = User._all.find(e => e.name.toLowerCase().trim() === username.value.toLowerCase())
     
     if (!!User.currentUser && User.currentUser.password === password.value){
         User.currentUser.displayAccountInfo()
@@ -49,7 +49,7 @@ loginbtn.addEventListener("click", function() {
     }
 
     loginContainer.innerHTML = ""
-    Product.all.forEach(e => e.displayProduct())
+    Product._all.forEach(e => e.displayProduct())
     Array.from(specialButtons).map(e => e.style = "display:inline;")
 
 })

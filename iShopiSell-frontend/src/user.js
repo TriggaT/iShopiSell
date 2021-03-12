@@ -1,6 +1,6 @@
 class User {
 
-    static all = []
+    static _all = []
 
     constructor(id, name, accountBalance = 200, password, shoppingCart = []){
         this.id = id
@@ -8,7 +8,7 @@ class User {
         this.accountBalance = accountBalance
         this.password = password 
         this.shoppingCart = shoppingCart
-        User.all.push(this)
+        User._all.push(this)
     }
 
     static currentUser;
@@ -24,7 +24,7 @@ class User {
     purchaseProductsInCart(){
         let aBalance = document.getElementById("account-balance")
  
-        let market = User.all.find(e => e.id === 1)
+        let market = User._all.find(e => e.id === 1)
         
         this.accountBalance = this.accountBalance - total
         market.accountBalance = market.accountBalance + shopping.length

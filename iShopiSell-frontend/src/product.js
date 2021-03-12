@@ -1,6 +1,6 @@
 class Product {
 
-    static all = []
+    static _all = []
 
     constructor(id, name, price, quantity, seller){
         this.id = id
@@ -8,7 +8,7 @@ class Product {
         this.price = price 
         this.quantity = quantity
         this.seller = seller
-        Product.all.push(this)
+        Product._all.push(this)
     }
 
     displayProduct(){
@@ -61,7 +61,7 @@ class Product {
     }
 
     updateSellerAccount(){
-        let seller = User.all.find(e => e.name === this.seller)
+        let seller = User._all.find(e => e.name === this.seller)
         seller.accountBalance = seller.accountBalance + (this.price - 1) 
 
         userAdapter.updateBalance(seller)
