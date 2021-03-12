@@ -71,6 +71,7 @@ class Product {
         const products = Array.from(document.getElementsByClassName("products-display"))
         let shoppedProduct = products.find(e => e.innerHTML.includes(this.name) && e.innerHTML.includes(this.seller))
         let item = shopping.find(e => e.name === this.name)
+
         
         if(!!item){
             this.quantity = this.quantity + 1
@@ -82,6 +83,7 @@ class Product {
         }
 
         return shopping
+
 
     }
 

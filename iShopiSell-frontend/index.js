@@ -49,7 +49,7 @@ loginbtn.addEventListener("click", function() {
         })
     }
 
-    loginContainer.innerHTML = ""
+    loginContainer.style = "display:none;"
     logoutbtn.style = "display:inline;"
     Product._all.forEach(e => e.displayProduct())
     Array.from(specialButtons).map(e => e.style = "display:inline;")
@@ -109,7 +109,23 @@ shoppingCartButton.addEventListener("click", function(){
 })
 
 logoutbtn.addEventListener("click", function(){
-    console.log(this)
+    let username = document.getElementById("user")
+    let aBalance = document.getElementById("account-balance")
+    let additionalInfo = document.createElement("h5")
+
+    User.currentUser = {} 
+    shopping.forEach(e => e.removeFromCart())
+    username.innerText = ""
+    aBalance.innerText = ""
+    loginContainer.style = "display:inline;"
+    logoutbtn.style = "display:none;"
+    productContainer.innerHTML = ""
+    shoppingList.innerHTML = ""
+    additionalInfo.innerHTML = ""
+    
+    
+    Array.from(specialButtons).map(e => e.style = "display:none;")
+    password.value = ""
 } )
 
 

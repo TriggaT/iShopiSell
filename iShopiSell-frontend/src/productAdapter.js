@@ -43,9 +43,10 @@ class ProductAdapter {
             },
             body: JSON.stringify({quantity:`${product.quantity}`})
         }
+
     
     
-        return fetch(this.baseURL+`/${product.id}`, configObj)
+        fetch(this.baseURL+`/${product.id}`, configObj)
         .then(r => r.json())
         .then(p => p)
     }
