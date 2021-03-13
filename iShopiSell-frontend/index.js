@@ -94,6 +94,8 @@ newProductButton.addEventListener("click", function(){
 
 productForm.addEventListener("submit", function(e){
     e.preventDefault();
+    currentUser = User.currentUser;
+    
     let productName = document.getElementById("product-name").value
     let productPrice = document.getElementById("product-price").value
     let productQuantity = document.getElementById("product-quantity").value
@@ -103,9 +105,14 @@ productForm.addEventListener("submit", function(e){
         return  
     }
 
-    currentUser = User.currentUser;
+    let productData = {
+        name: productName, 
+        price: productPrice,
+        quantity: productQuantity,
+        user_id: currentUser.id    
+    }
 
-    productAdapter.createNewProduct()
+    productAdapter.createNewProduct(productData)
     .then(p => {let product = new Product(p.id, p.name, p.price, p.quantity, currentUser.name); 
     product.displayProduct(); 
     productForm.style = "display:none;";})    
