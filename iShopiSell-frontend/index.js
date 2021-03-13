@@ -94,6 +94,15 @@ newProductButton.addEventListener("click", function(){
 
 productForm.addEventListener("submit", function(e){
     e.preventDefault();
+    let productName = document.getElementById("product-name").value
+    let productPrice = document.getElementById("product-price").value
+    let productQuantity = document.getElementById("product-quantity").value
+
+    if(productName === "" || productPrice === "" || productQuantity === ""){
+        alert("Make sure you fill out all information for your product. Thanks!")
+        return  
+    }
+
     currentUser = User.currentUser;
 
     productAdapter.createNewProduct()
