@@ -27,8 +27,11 @@ document.addEventListener("DOMContentLoaded", function (){
 
 loginbtn.addEventListener("click", function() {
     User.currentUser = User._all.find(e => e.name.toLowerCase().trim() === username.value.toLowerCase())
+    if(username.value === ""){
+        alert("Please put your username")
+        return
+    }
 
-    
     if (!!User.currentUser && User.currentUser.password === password.value){
         User.currentUser.displayAccountInfo()
     }
@@ -48,8 +51,31 @@ loginbtn.addEventListener("click", function() {
 
 })
 
-signup.addEventListener("click", function(){
-    console.log(this)
+signupbtn.addEventListener("click", function(){
+    User.currentUser = User._all.find(e => e.name.toLowerCase().trim() === username.value.toLowerCase())
+    
+    if(username.value === "" || password.value === ""){
+        alert("Please make sure you put a username and password")
+        return
+    }
+
+    if (!!User.currentUser){
+        alert("This user already exists. Try a different username or login.")
+        return 
+    }
+
+    else userAdapter.makeUser(username.value.trim(), password.value)
+        .then(u => {let user = new User(u.id, u.name, u.account_balance, u.password)
+            alert("Thank you for creating an iShopiSell account.")
+            user.displayAccountInfo()
+            User.currentUser = user 
+        })
+    
+    loginContainer.style = "display:none;"
+    Array.from(messages).map(e => e.style = "display:block;")
+    logoutbtn.style = "display:inline;"
+    Product._all.forEach(e => e.displayProduct())
+    Array.from(specialButtons).map(e => e.style = "display:inline;")
 })
 
 
