@@ -25,6 +25,11 @@ class User {
         let aBalance = document.getElementById("account-balance")
  
         let market = User._all.find(e => e.id === 1)
+
+        if (total > this.accountBalance){
+            alert("You can't afford every item in your cart. Please remove some items.")
+            return
+        } 
         
         this.accountBalance = this.accountBalance - total
         market.accountBalance = market.accountBalance + shopping.length
