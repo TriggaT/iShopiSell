@@ -1,6 +1,7 @@
 const userAdapter = new UserAdapter("http://localhost:3000/users");
 const productAdapter = new ProductAdapter("http://localhost:3000/products");
 const loginbtn = document.getElementById("login-button")
+const signupbtn = document.getElementById("signup-button")
 const logoutbtn = document.getElementById("logout")
 const username = document.getElementById("login")
 const password = document.getElementById("password")
@@ -26,27 +27,17 @@ document.addEventListener("DOMContentLoaded", function (){
 
 loginbtn.addEventListener("click", function() {
     User.currentUser = User._all.find(e => e.name.toLowerCase().trim() === username.value.toLowerCase())
+
     
     if (!!User.currentUser && User.currentUser.password === password.value){
         User.currentUser.displayAccountInfo()
     }
 
     if (!User.currentUser || User.currentUser.password != password.value){  
-        if (!username.value.trim() || password.value === ""){
-            alert("Your username or password can not be empty")
-            return 
-        }
-        if (User.currentUser.password != password.value){
-            alert("Your password is incorrect")
+        if (User.currentUser.password != password.value || password.value === ""){
+            alert("Your password is incorrect or empty")
             return
-
         }
-        else userAdapter.makeUser(username.value.trim(), password.value)
-        .then(u => {let user = new User(u.id, u.name, u.account_balance, u.password)
-            alert("Thank you for creating an iShopiSell account.")
-            user.displayAccountInfo()
-            User.currentUser = user 
-        })
     }
 
     loginContainer.style = "display:none;"
@@ -55,6 +46,10 @@ loginbtn.addEventListener("click", function() {
     Product._all.forEach(e => e.displayProduct())
     Array.from(specialButtons).map(e => e.style = "display:inline;")
 
+})
+
+signup.addEventListener("click", function(){
+    console.log(this)
 })
 
 
